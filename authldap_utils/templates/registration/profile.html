@@ -1,0 +1,40 @@
+{% extends 'registration/base.html' %}
+
+
+
+{% block registration_title %}User profile{% endblock %}
+
+{% block registration_content %}
+    {% with user=request.user %}
+            
+            <ul>
+                <li>email: 
+                    <span class="highlight">{{ user.email }}
+                </li>
+                <li>last login: 
+                    <span class="highlight">{{ user.last_login }}
+                </li>
+            </ul>
+            
+            {% url 'password_change' as link_url %}
+            {% if link_url %}
+                <p>
+                    <a href="{{ link_url }}">
+                        Change password &rarr;
+                    </a>
+                </p>
+            {% endif %}
+            {% if user.is_staff %}
+                {% url 'admin:index' as link_url %}
+                {% if link_url %}
+                    <p>
+                        <a href="{{ link_url }}">
+                            Site administration &rarr;
+                        </a>
+                    </p>
+                {% endif %}
+            {% endif %}
+
+    {% endwith %}
+
+{% endblock registration_content %}

@@ -1,0 +1,5 @@
+include requirements.txt
+include README.rst
+include LICENSE.txt
+#recursive-include authldap_utils/static *
+recursive-include authldap_utils/templates *
